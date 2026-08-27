@@ -37,3 +37,10 @@ jobs:
 
       - name: Run Fastlane CI
         run: bundle exec fastlane ci
+        
+      - name: Upload Xcode archive
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: FastlaneCertification-xcarchive
+          path: build/FastlaneCertification.xcarchive

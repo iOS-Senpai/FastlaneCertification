@@ -1,0 +1,35 @@
+default_platform(:ios)
+
+PROJECT = "FastlaneCertification.xcodeproj"
+SCHEME = "FastlaneCertification"
+
+platform :ios do
+
+  desc "Run unit tests for CI"
+  lane :unit_tests do
+    run_tests(
+      project: PROJECT,
+      scheme: SCHEME,
+      only_testing: ["FastlaneCertificationTests"]
+    )
+  end
+
+  desc "Build app for CI without distribution signing"
+  lane :build do
+    build_app(
+      project: PROJECT,
+      scheme: SCHEME,
+      configuration: "Release",
+      clean: true,
+      skip_codesigning: true,
+      skip_package_ipa: true
+    )
+  end
+
+  desc "Run complete CI validation"
+  lane :ci do
+    unit_tests
+    build
+  end
+
+end

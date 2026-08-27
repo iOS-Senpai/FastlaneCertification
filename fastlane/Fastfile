@@ -4,7 +4,6 @@ PROJECT = "FastlaneCertification.xcodeproj"
 SCHEME = "FastlaneCertification"
 
 platform :ios do
-
   desc "Run unit tests for CI"
   lane :unit_tests do
     run_tests(
@@ -27,10 +26,22 @@ platform :ios do
     )
   end
 
+  desc "Validate signing configuration"
+  lane :signing_check do
+    UI.message("Signing stage started")
+
+    signing_directory = File.expand_path("../signing", __dir__)
+
+    unless File.directory?(signing_directory)
+      UI.user_error!("Signing assets directory is missing")
+    end
+
+    UI.success("Signing assets are available")
+  end
+
   desc "Run complete CI validation"
   lane :ci do
     unit_tests
     build
   end
-
 end

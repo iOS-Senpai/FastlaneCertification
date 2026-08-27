@@ -22,7 +22,8 @@ platform :ios do
       configuration: "Release",
       clean: true,
       skip_codesigning: true,
-      skip_package_ipa: true
+      skip_package_ipa: true,
+      archive_path: "build/FastlaneCertification.xcarchive"
     )
   end
 

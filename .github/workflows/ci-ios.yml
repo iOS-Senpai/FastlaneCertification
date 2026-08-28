@@ -35,10 +35,10 @@ jobs:
       - name: Install Gems
         run: bundle install
 
-      - name: Run Fastlane CI
+      - name: Run release pipeline
         env:
           MOCK_SIGNING_SECRET: ${{ secrets.MOCK_SIGNING_SECRET }}
-        run: bundle exec fastlane ci
+        run: bundle exec fastlane release
         
       - name: Upload Xcode archive
         if: success()

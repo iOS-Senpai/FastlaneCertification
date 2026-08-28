@@ -31,6 +31,14 @@ Run unit tests for CI
 
 Build app for CI without distribution signing
 
+### ios signing_check
+
+```sh
+[bundle exec] fastlane ios signing_check
+```
+
+Validate signing configuration
+
 ### ios ci
 
 ```sh
@@ -38,6 +46,14 @@ Build app for CI without distribution signing
 ```
 
 Run complete CI validation
+
+### ios release
+
+```sh
+[bundle exec] fastlane ios release
+```
+
+Run release pipeline simulation
 
 ----
 

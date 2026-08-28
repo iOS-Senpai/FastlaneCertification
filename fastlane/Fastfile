@@ -36,6 +36,10 @@ platform :ios do
       UI.user_error!("Signing assets directory is missing")
     end
 
+    unless ENV["MOCK_SIGNING_SECRET"]
+      UI.user_error!("Signing secret is missing")
+    end
+
     UI.success("Signing assets are available")
   end
 
@@ -43,5 +47,15 @@ platform :ios do
   lane :ci do
     unit_tests
     build
+  end
+
+  desc "Run release pipeline simulation"
+  lane :release do
+    unit_tests
+    build
+    signing_check
+
+    UI.message("Distribution signing boundary validated")
+    UI.success("Release pipeline simulation completed")
   end
 end

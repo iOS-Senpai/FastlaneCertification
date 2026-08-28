@@ -36,6 +36,8 @@ jobs:
         run: bundle install
 
       - name: Run Fastlane CI
+        env:
+          MOCK_SIGNING_SECRET: ${{ secrets.MOCK_SIGNING_SECRET }}
         run: bundle exec fastlane ci
         
       - name: Upload Xcode archive
